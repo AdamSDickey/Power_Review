@@ -39,13 +39,14 @@ sampleBig <- subset(samplesize,nA>minSamp & nB>minSamp & Exclude==0)
 
 #Run meta-analysis
 m.publ=metabin(Apos, nA, Bpos, nB, data=sampleBig, studlab=paste0(First_Author, " (", Year, ")"), method.tau = "PM", sm="OR")
-forest(m.publ, sortvar=Year, prediction=TRUE, label.right = "Favours Positive", label.left = "Favours Negative")
 or=exp(m.publ$TE.random)
+forest(m.publ, sortvar=Year, prediction=TRUE, label.right = "Favours Positive", label.left = "Favours Negative")
+
 ```
 
 
 
-I first performed a meta-analysis of `r nrow(sampleBig)` studies which had more than `r minSamp` subjects in each group.  We excluded 2 studies because their data were subsets of later larger studies.  
+I first performed a meta-analysis of `r nrow(sampleBig)` studies which had more than `r minSamp` subjects in each group.  2 studies were excluded because their data were subsets of later larger studies.  
 
 The pooled odds-ratio from the meta-analysis, assuming a random effects model, was `r sprintf("%.2f",or)`. 
 
